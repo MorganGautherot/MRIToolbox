@@ -162,7 +162,7 @@ def save_patches(x, y, save_path, dataframe):
     return dataframe
 
 
-def create_patches(images_path, labels_path, save_path, threshold_selection_voxel=0.5, patch_size=(11, 11, 11), balance=True)
+def create_patches(images_path, labels_path, save_path, threshold_selection_voxel=0.5, patch_size=(11, 11, 11), balance=True):
 
     dataframe = pd.DataFrame([], columns=('participant_id', 'image_id', 'x_modalities', 'y_modalities', 'x_path', 'y_path'))
     os.system('mkdir '+save_path+'/data/')
