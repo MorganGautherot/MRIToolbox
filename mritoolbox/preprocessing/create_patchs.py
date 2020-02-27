@@ -181,4 +181,4 @@ def create_patches(images_path, labels_path, save_path, threshold_selection_voxe
 
         dataframe = save_patches(x, y, save_path, dataframe)
 
-    dataframe.to_csv(save_path+'/dataframe.csv')
+    dataframe.to_csv(save_path+'/dataframe.csv', index=False)
