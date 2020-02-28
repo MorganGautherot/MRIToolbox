@@ -129,9 +129,9 @@ def generate_patches(matrix, lesion_centers, no_lesion_centers, lesion_masks, pa
     
     return x, y
 
-def save_patches(x, y, save_path, dataframe):
+def save_patches(x, y, save_path, dataframe, id_img):
     
-    path = save_path+'data/'+str(labels[0])
+    path = save_path+'data/'+str(id_img)
 
     os.system('mkdir '+path)
     os.system('mkdir '+path+'/x/')
@@ -167,6 +167,7 @@ def create_patches(images_path, labels_path, save_path, threshold_selection_voxe
     dataframe = pd.DataFrame([], columns=('participant_id', 'image_id', 'x_modalities', 'y_modalities', 'x_path', 'y_path'))
     os.system('mkdir '+save_path+'/data/')
     for images, labels in zip(images_path.iterrows(), labels_path.iterrows()):
+
         images = images[1]
         labels = labels[1]
         output_modalities = np.squeeze(labels.shape)-1
@@ -179,6 +180,6 @@ def create_patches(images_path, labels_path, save_path, threshold_selection_voxe
 
         x, y = generate_patches(matrix, lesion_centers, no_lesion_centers, lesion_masks, patch_size)
 
-        dataframe = save_patches(x, y, save_path, dataframe)
+        dataframe = save_patches(x, y, save_path, dataframe, images['id'])
 
     dataframe.to_csv(save_path+'/dataframe.csv', index=False)
